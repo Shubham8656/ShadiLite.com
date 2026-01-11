@@ -76,3 +76,19 @@
   color: white;
   cursor: pointer;
 }
+.chat-input textarea {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  max-height: 120px;
+  overflow-y: auto;
+
+  /* important for flex */
+  min-width: 0;
+}

@@ -52,17 +52,16 @@ export default function ChatRoom() {
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`message ${
-              m.senderId === auth.currentUser.uid ? "me" : "other"
-            }`}
+            className={`message ${m.senderId === auth.currentUser.uid ? "me" : "other"
+              }`}
           >
             {m.text}
             <div className="message-time">
               {m.createdAt?.toDate
                 ? m.createdAt.toDate().toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit"
-                  })
+                  hour: "2-digit",
+                  minute: "2-digit"
+                })
                 : ""}
             </div>
           </div>
@@ -71,12 +70,22 @@ export default function ChatRoom() {
       </div>
 
       <div className="chat-input">
-        <input
+        <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Type a message"
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          rows={1}
+          onInput={(e) => {
+            e.target.style.height = "auto";
+            e.target.style.height = Math.min(e.target.scrollHeight, 20) + "px";
+          }}
+          onKeyDown={(e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+              sendMessage();
+            }
+          }}
         />
+
         <button onClick={sendMessage}>Send</button>
       </div>
     </div>
