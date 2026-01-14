@@ -29,7 +29,13 @@ export default function MyProfile() {
     <div className="profile-details-page">
       <div className="profile-details-card">
         <h2>My Profile</h2>
-
+        {profile.photoURL && (
+          <img
+            src={profile.photoURL}
+            alt="me"
+            style={{ width: 100, height: 100, borderRadius: "50%", marginBottom: 10 }}
+          />
+        )}
         <p><strong>Name:</strong> {profile.name}</p>
         <p><strong>Age:</strong> {profile.age}</p>
         <p><strong>Gender:</strong> {profile.gender}</p>

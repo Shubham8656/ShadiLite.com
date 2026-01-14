@@ -82,8 +82,16 @@ export default function ProfileDetails() {
     return (
         <div className="profile-details-page">
             <div className="profile-details-card">
+                {profile.photoURL ? (
+                    <img
+                        src={profile.photoURL}
+                        alt=""
+                        style={{ width: 40, height: 40, borderRadius: "50%" }}
+                    />
+                ) : (
+                    <div className="chat-avatar">{profile.name.charAt(0)}</div>
+                )}
                 <h2>{profile.name}, {profile.age}</h2>
-
                 <p><strong>Religion:</strong> {profile.religion}</p>
                 <p><strong>Location:</strong> {profile.location}</p>
 

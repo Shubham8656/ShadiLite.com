@@ -29,6 +29,9 @@ export default function Chats() {
                 if (userSnap.exists()) {
                     result.push({
                         chatId: chatDoc.id,
+                        name: userSnap.data().name,
+                        lastMessage: data.lastMessage || "",
+                        unread: data.unreadCount?.[user.uid] || 0,
                         ...userSnap.data()
                     });
                 }
@@ -50,14 +53,40 @@ export default function Chats() {
 
             <div className="matches-grid">
                 {chats.map(chat => (
-                    <div
-                        key={chat.chatId}
-                        className="profile-card"
-                        onClick={() => navigate(`/chat/${chat.chatId}`)}
-                    >
+                    <div className="profile-card-Chat" key={chat.chatId} onClick={() => navigate(`/chat/${chat.chatId}`)}>
+                        <div className="chat-avatar">
+                            {chat.photoURL ? (
+                                <img
+                                    src={chat.photoURL}
+                                    alt=""
+                                    style={{ width: 40, height: 40, borderRadius: "50%" }}
+                                />
+                            ) : (
+                                <div className="avatar-fallback">{chat.name.charAt(0)}</div>
+                            )}
+                            {/* {chat?.name ? chat.name.charAt(0) : "👤"} */}
+                        </div>
+                        <div className="ChatName">
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
 
-                        <h3>{chat.name}</h3>
-                        {/* <p>Tap to chat</p> */}
+                                <strong>{chat.name}</strong>
+                                {chat.unread > 0 && (
+                                    <span style={{
+                                        background: "#ff4d4d",
+                                        color: "white",
+                                        borderRadius: "50%",
+                                        padding: "4px 8px",
+                                        fontSize: "12px"
+                                    }}>
+                                        {chat.unread}
+                                    </span>
+                                )}
+                            </div>
+
+                            <p style={{ color: "#666", marginTop: 6 }}>
+                                {chat.lastMessage}
+                            </p>
+                        </div>
                     </div>
                 ))}
             </div>

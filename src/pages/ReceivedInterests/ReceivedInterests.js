@@ -8,7 +8,7 @@ import {
     getDocs,
     doc,
     getDoc,
-    updateDoc,addDoc, serverTimestamp
+    updateDoc, addDoc, serverTimestamp
 } from "firebase/firestore";
 
 export default function ReceivedInterests() {
@@ -102,6 +102,15 @@ export default function ReceivedInterests() {
             <div className="matches-grid">
                 {profiles.map((profile) => (
                     <div className="profile-card" key={profile.interestId}>
+                        {profile.photoURL ? (
+                            <img
+                                src={profile.photoURL}
+                                alt=""
+                                style={{ width: 40, height: 40, borderRadius: "50%" }}
+                            />
+                        ) : (
+                            <div className="chat-avatar">{profile.name.charAt(0)}</div>
+                        )}
                         <h3>{profile.name}, {profile.age}</h3>
                         <p>{profile.religion}</p>
                         <p>{profile.location}</p>

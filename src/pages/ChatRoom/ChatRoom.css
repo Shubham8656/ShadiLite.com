@@ -6,11 +6,42 @@
 }
 
 .chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 12px 16px;
   background: white;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
+
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ff4d4d;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.chat-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-user-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.chat-user-sub {
+  font-size: 12px;
+  color: #666;
+}
+
 
 .chat-messages {
   flex: 1;
@@ -25,7 +56,7 @@
   margin-bottom: 8px;
   font-size: 14px;
   line-height: 1.4;
-   /* 🔥 FIX FOR OVERFLOW */
+  /* 🔥 FIX FOR OVERFLOW */
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -64,7 +95,8 @@
   border-radius: 20px;
   border: 1px solid #ccc;
   outline: none;
-  min-width: 0; /* 🔥 important for flex layouts */
+  min-width: 0;
+  /* 🔥 important for flex layouts */
 }
 
 .chat-input button {
@@ -76,6 +108,7 @@
   color: white;
   cursor: pointer;
 }
+
 .chat-input textarea {
   flex: 1;
   padding: 10px 14px;

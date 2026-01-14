@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import "../Auth.css";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function ProfileSetup() {
   const [name, setName] = useState("");
@@ -11,6 +12,8 @@ export default function ProfileSetup() {
   const [religion, setReligion] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
+  const [photoFile, setPhotoFile] = useState(null);
+  const [preview, setPreview] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,15 +32,27 @@ export default function ProfileSetup() {
     try {
       setLoading(true);
 
+      // 🔥 Upload photo and get URL
+      // let photoURL = "";
+
+      // if (photoFile) {
+      //   const photoRef = ref(
+      //     storage,
+      //     `profilePhotos/${user.uid}/avatar.jpg`
+      //   );
+      //   await uploadBytes(photoRef, photoFile);
+      //   photoURL = await getDownloadURL(photoRef);
+      // }
+
       await setDoc(doc(db, "users", user.uid), {
         name,
         age,
         gender,
         religion,
         location,
+        // photoURL,           // 🔥 save URL
         createdAt: serverTimestamp()
       });
-
       // ✅ Profile saved
       navigate("/matches");
     } catch (error) {
@@ -52,7 +67,7 @@ export default function ProfileSetup() {
       <div className="auth-card">
         <h2>Create Profile</h2>
         <p>Tell us about yourself</p>
-
+       
         <input
           placeholder="Full Name"
           value={name}
@@ -86,6 +101,26 @@ export default function ProfileSetup() {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
+
+        {/* Photo upload */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            setPhotoFile(file);
+            setPreview(URL.createObjectURL(file));
+          }}
+        />
+
+        {preview && (
+          <img
+            src={preview}
+            alt="preview"
+            style={{ width: 80, height: 80, borderRadius: "50%", margin: "10px auto" }}
+          />
+        )}
 
         <button
           className="primary-btn"
