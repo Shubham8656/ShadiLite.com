@@ -12,6 +12,7 @@ import ReceivedInterests from "./pages/ReceivedInterests/ReceivedInterests";
 import AcceptedMatches from "./pages/AcceptedMatches/AcceptedMatches";
 import Chats from "./pages/Chats/Chats";
 import ChatRoom from "./pages/ChatRoom/ChatRoom";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/accepted-matches" element={<ProtectedRoute><AcceptedMatches /></ProtectedRoute>} />
         <Route path="/chats" element={<ProtectedRoute><Chats /></ProtectedRoute>} />
         <Route path="/chat/:chatId" element={<ProtectedRoute><ChatRoom /></ProtectedRoute>} />
+        <Route path="/edit-profile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
       </Routes>
 
       <Routes>

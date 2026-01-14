@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+
 import "../Auth.css";
 
 export default function MyProfile() {
   const [profile, setProfile] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -41,6 +44,13 @@ export default function MyProfile() {
         <p><strong>Gender:</strong> {profile.gender}</p>
         <p><strong>Religion:</strong> {profile.religion}</p>
         <p><strong>Location:</strong> {profile.location}</p>
+        <button
+          className="secondary-btn"
+          onClick={() => navigate("/edit-profile")}
+        >
+          Edit Profile
+        </button>
+
       </div>
     </div>
   );
