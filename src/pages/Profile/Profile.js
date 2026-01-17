@@ -12,7 +12,7 @@ export default function ProfileSetup() {
   const [religion, setReligion] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
-  const [photoFile, setPhotoFile] = useState(null);
+  // const [photoFile, setPhotoFile] = useState(null);
   const [preview, setPreview] = useState("");
 
   const navigate = useNavigate();
@@ -109,7 +109,7 @@ export default function ProfileSetup() {
           onChange={(e) => {
             const file = e.target.files[0];
             if (!file) return;
-            setPhotoFile(file);
+            // setPhotoFile(file);
             setPreview(URL.createObjectURL(file));
           }}
         />
