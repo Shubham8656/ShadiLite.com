@@ -13,7 +13,7 @@ export default function ProfileSetup() {
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
   // const [photoFile, setPhotoFile] = useState(null);
-  const [preview, setPreview] = useState("");
+  // const [preview, setPreview] = useState("");
 
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ export default function ProfileSetup() {
         createdAt: serverTimestamp()
       });
       // ✅ Profile saved
-      navigate("/matches");
+      navigate("/profile-completion");
     } catch (error) {
       alert("Error saving profile");
     } finally {
@@ -103,7 +103,7 @@ export default function ProfileSetup() {
         />
 
         {/* Photo upload */}
-        <input
+        {/* <input
           type="file"
           accept="image/*"
           onChange={(e) => {
@@ -112,15 +112,15 @@ export default function ProfileSetup() {
             // setPhotoFile(file);
             setPreview(URL.createObjectURL(file));
           }}
-        />
+        /> */}
 
-        {preview && (
+        {/* {preview && (
           <img
             src={preview}
             alt="preview"
             style={{ width: 80, height: 80, borderRadius: "50%", margin: "10px auto" }}
           />
-        )}
+        )} */}
 
         <button
           className="primary-btn"

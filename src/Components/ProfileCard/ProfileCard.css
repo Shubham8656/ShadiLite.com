@@ -1,0 +1,9 @@
+.match-score {
+  background: #fff0f0;
+  color: #ff4d4d;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 14px;
+  display: inline-block;
+  margin-top: 6px;
+}

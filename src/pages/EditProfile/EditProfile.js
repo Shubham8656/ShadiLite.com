@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import "../Auth.css";
+import { FieldLabel } from "../../Components/FieldLabel/FieldLabel";
+import { BackButton } from "../../Components/BackButton/BackButton";
 
 export default function EditProfile() {
   const [name, setName] = useState("");
@@ -11,6 +13,8 @@ export default function EditProfile() {
   const [religion, setReligion] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
+  const [showWarning, setShowWarning] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -39,8 +43,10 @@ export default function EditProfile() {
     if (!user) return;
 
     if (!name || !age || !gender || !religion || !location) {
-      alert("Please fill all fields");
+      setShowWarning(true);
       return;
+    } else {
+      setShowWarning(false);
     }
 
     try {
@@ -52,7 +58,7 @@ export default function EditProfile() {
         location
       });
 
-      navigate("/my-profile");
+      navigate("/profile-completion");
     } catch (err) {
       alert("Failed to update profile");
     }
@@ -65,21 +71,24 @@ export default function EditProfile() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Edit Profile</h2>
-
+        <BackButton />
+        {showWarning && <span className="back-btn" style={{ color: "red" }}>Please fill all the details</span>}
+        <h2>Basic Details</h2>
+        <div className="spacer-10" />
+        <FieldLabel label="Full Name" />
         <input
           placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
+        <FieldLabel label="Age" />
         <input
           type="number"
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
         />
-
+        <FieldLabel label="Gender" />
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
@@ -88,13 +97,13 @@ export default function EditProfile() {
           <option>Male</option>
           <option>Female</option>
         </select>
-
+        <FieldLabel label="Religion" />
         <input
           placeholder="Religion"
           value={religion}
           onChange={(e) => setReligion(e.target.value)}
         />
-
+        <FieldLabel label="Location (City)" />
         <input
           placeholder="Location (City)"
           value={location}

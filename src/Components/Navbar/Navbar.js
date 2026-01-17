@@ -62,9 +62,10 @@ export default function Navbar() {
                 <span onClick={() => goTo("/accepted-matches")}>
                     Accepted Matches
                 </span>
-                <span onClick={() => goTo("/chats")}>Chats</span>
+                <span onClick={
+                    () => goTo("/chats")}>Chats</span>
 
-                <span onClick={() => goTo("/my-profile")}>My Profile</span>
+                <span onClick={() => goTo("/profile-completion")}>My Profile</span>
                 <span onClick={logout}>Logout</span>
             </div>
         </div>

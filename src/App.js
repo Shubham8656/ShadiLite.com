@@ -13,6 +13,11 @@ import AcceptedMatches from "./pages/AcceptedMatches/AcceptedMatches";
 import Chats from "./pages/Chats/Chats";
 import ChatRoom from "./pages/ChatRoom/ChatRoom";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import ProfileCompletion from "./pages/ProfileCompletion/ProfileCompletion";
+import PersonalDetails from "./pages/PersonalDetails/PersonalDetails";
+import CareerDetails from "./pages/CareerDetails/CareerDetails";
+import FamilyDetails from "./pages/FamilyDetails/FamilyDetails";
+import AboutMe from "./pages/AboutMe/AboutMe";
 
 function App() {
   return (
@@ -28,6 +33,11 @@ function App() {
         <Route path="/chats" element={<ProtectedRoute><Chats /></ProtectedRoute>} />
         <Route path="/chat/:chatId" element={<ProtectedRoute><ChatRoom /></ProtectedRoute>} />
         <Route path="/edit-profile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
+        <Route path="/profile-completion" element={<ProtectedRoute><ProfileCompletion /></ProtectedRoute>} />
+        <Route path="/personal-details" element={<ProtectedRoute><PersonalDetails /></ProtectedRoute>} />
+        <Route path="/career-details" element={<ProtectedRoute><CareerDetails /></ProtectedRoute>} />
+        <Route path="/family-details" element={<ProtectedRoute><FamilyDetails /></ProtectedRoute>} />
+        <Route path="/about-me" element={<ProtectedRoute><AboutMe /></ProtectedRoute>} />
       </Routes>
 
       <Routes>
