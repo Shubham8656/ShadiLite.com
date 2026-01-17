@@ -40,7 +40,7 @@ export default function AcceptedMatches() {
                 ...(await getDocs(q2)).docs
             ];
             const result = [];
-
+            const uniqUserIds = new Set();
             for (const interestDoc of snaps) {
                 const interest = interestDoc.data();
 
@@ -53,7 +53,11 @@ export default function AcceptedMatches() {
                         interest.fromUserId === user.uid
                             ? interest.toUserId
                             : interest.fromUserId;
-
+                    if (uniqUserIds.has(otherUserId)) {
+                        continue; // Skip duplicates
+                    }else {
+                        uniqUserIds.add(otherUserId);
+                    }
                     const userSnap = await getDoc(
                         doc(db, "users", otherUserId)
                     );
