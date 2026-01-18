@@ -13,13 +13,13 @@
 
 .detail-label {
   /* margin-left: 0px; */
-  font-size: 13px;
+  font-size: 15px;
   color: #999;
   font-weight: 500;
 }
 
 .detail-value {
-  font-size: 14px;
+  font-size: 17px;
   color: #1a1a1a;
   font-weight: 600;
   text-align: right;

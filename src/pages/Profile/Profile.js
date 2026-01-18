@@ -72,6 +72,7 @@ export default function ProfileSetup() {
           placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{fontSize:"15px"}}
         />
 
         <input
@@ -79,13 +80,15 @@ export default function ProfileSetup() {
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
+          style={{fontSize:"15px"}}
         />
 
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
+          style={{fontSize:"15px"}}
         >
-          <option value="">Gender</option>
+          <option value=""style={{fontSize:"15px"}}>Gender</option>
           <option>Male</option>
           <option>Female</option>
         </select>
@@ -94,12 +97,14 @@ export default function ProfileSetup() {
           placeholder="Religion"
           value={religion}
           onChange={(e) => setReligion(e.target.value)}
+          style={{fontSize:"15px"}}
         />
 
         <input
           placeholder="Location (City)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+          style={{fontSize:"15px"}}
         />
 
         {/* Photo upload */}

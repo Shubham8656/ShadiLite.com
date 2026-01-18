@@ -79,6 +79,7 @@ export default function EditProfile() {
           placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{fontSize:"15px"}}
         />
         <FieldLabel label="Age" />
         <input
@@ -86,11 +87,13 @@ export default function EditProfile() {
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
+          style={{fontSize:"15px"}}
         />
         <FieldLabel label="Gender" />
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
+          style={{fontSize:"15px"}}
         >
           <option value="">Gender</option>
           <option>Male</option>
@@ -101,12 +104,14 @@ export default function EditProfile() {
           placeholder="Religion"
           value={religion}
           onChange={(e) => setReligion(e.target.value)}
+          style={{fontSize:"15px"}}
         />
         <FieldLabel label="Location (City)" />
         <input
           placeholder="Location (City)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+          style={{fontSize:"15px"}}
         />
 
         <button className="primary-btn" onClick={updateProfile}>

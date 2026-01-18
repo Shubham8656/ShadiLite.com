@@ -39,10 +39,11 @@ function App() {
         <Route path="/career-details" element={<ProtectedRoute><CareerDetails /></ProtectedRoute>} />
         <Route path="/family-details" element={<ProtectedRoute><FamilyDetails /></ProtectedRoute>} />
         <Route path="/about-me" element={<ProtectedRoute><AboutMe /></ProtectedRoute>} />
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       </Routes>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/login-register" element={<SignInOrSignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

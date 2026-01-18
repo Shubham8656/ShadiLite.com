@@ -68,6 +68,7 @@ export default function CareerDetails() {
                     placeholder="Profession"
                     value={form.profession || ""}
                     onChange={(e) => h("profession", e.target.value)}
+                    style={{fontSize:"15px"}}
                 />
 
                 <FieldLabel label="Annual Income" />

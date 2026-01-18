@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
-import { auth, db } from "../../firebase";
+import { useContext, useEffect, useState } from "react";
+import {  db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { calculateProfileCompletion } from "../../utils/matchingEngine";
 import "./MyProfile.css";
 import { FieldDetail } from "../../Components/FieldDetail/FieldDetail";
+import { AuthContext } from "../../Context/AuthContext";
 
 export default function MyProfile() {
   const [profile, setProfile] = useState(null);
   const [profileCompletion, setProfileCompletion] = useState(null);
   const navigate = useNavigate();
+  const { user,loading } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const user = auth.currentUser;
       if (!user) return;
 
       const snap = await getDoc(doc(db, "users", user.uid));
@@ -22,13 +23,20 @@ export default function MyProfile() {
         setProfile(userData);
         setProfileCompletion(calculateProfileCompletion(userData));
       }
+      else {
+        navigate("/profile-setup");
+        return;
+      }
     };
 
     fetchProfile();
-  }, []);
+  }, [profile, user,navigate]);
 
+  if (loading) {
+    return <div className="my-profile-loading">Loading...</div>;
+  }
   if (!profile) {
-    return <div className="my-profile-loading">Loading profile...</div>;
+    return <div className="my-profile-loading">No Profile created yet. Please create your profile...</div>;
   }
 
   const getInitials = (name) => {
@@ -79,7 +87,7 @@ export default function MyProfile() {
             <div className="progress-bar">
               <div
                 className="progress-fill"
-                style={{ width: `${profileCompletion.percentage}%` }}
+                style={{ width: `${profileCompletion}%` }}
               ></div>
             </div>
           </div>

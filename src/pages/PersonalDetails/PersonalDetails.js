@@ -64,7 +64,8 @@ export default function PersonalDetails() {
                 <FieldLabel label="Height (cm)" />
                 <input type="number" placeholder="Height (cm)"
                     value={form.height || ""}
-                    onChange={e => h("height", e.target.value)} />
+                    onChange={e => h("height", e.target.value)}
+                    style={{fontSize:"15px"}} />
 
                 <FieldLabel label="Marital Status" />
                 <CustomDropdown

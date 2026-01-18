@@ -52,6 +52,7 @@ export default function FamilyDetails() {
                     placeholder="Father Occupation"
                     value={form.fatherOccupation || ""}
                     onChange={(e) => h("fatherOccupation", e.target.value)}
+                    style={{fontSize:"15px"}}
                 />
 
                 <FieldLabel label="Mother Occupation" />
@@ -59,6 +60,7 @@ export default function FamilyDetails() {
                     placeholder="Mother Occupation"
                     value={form.motherOccupation || ""}
                     onChange={(e) => h("motherOccupation", e.target.value)}
+                    style={{fontSize:"15px"}}
                 />
 
                 <FieldLabel label="Siblings" />

@@ -3,7 +3,7 @@ import { auth } from "../../firebase";
 
 export default function ProtectedRoute({ children }) {
   if (!auth.currentUser) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login-register" replace />;
   }
   return children;
 }
