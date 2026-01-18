@@ -58,3 +58,56 @@ export function passesHardFilters(me, other) {
 
   return true;
 }
+
+
+export function calculateProfileCompletion(profile) {
+  // Define required fields for a complete profile
+  const requiredFields = [
+    // Personal Info
+    'name',
+    'age',
+    'gender',
+    'religion',
+    'location',
+    
+    // Personal Details
+    'height',
+    'maritalStatus',
+    'motherTongue',
+    'diet',
+    
+    // Career Details
+    'education',
+    'profession',
+    'income',
+    
+    // Family Details
+    'familyType',
+    'fatherOccupation',
+    'motherOccupation',
+    'siblings',
+    
+    // About Me
+    'aboutMe'
+  ];
+
+  // Count filled fields
+  const filledFields = requiredFields.filter(field => {
+    const value = profile[field];
+    return value !== null && value !== undefined && value !== '';
+  }).length;
+
+  // Calculate percentage
+  const completionPercentage = Math.round((filledFields / requiredFields.length) * 100);
+
+    // return {
+    //   percentage: completionPercentage,
+    //   filledFields,
+    //   totalFields: requiredFields.length,
+    //   missingFields: requiredFields.filter(field => {
+    //     const value = profile[field];
+    //     return value === null || value === undefined || value === '';
+    //   })
+    // };
+  return completionPercentage;
+}

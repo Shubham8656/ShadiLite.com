@@ -27,7 +27,7 @@ export default function AboutMe() {
 
     return (
         <div className="auth-container">
-            <div className="auth-card">
+            <div className="auth-card welcome">
                 <h2>About Me</h2>
                 <div className="spacer-10" />
                 <textarea

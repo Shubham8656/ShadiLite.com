@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CustomDropdown from "../../Components/CustomDropdown/CustomDropdown";
 import "../Auth.css";
 import { FieldLabel } from "../../Components/FieldLabel/FieldLabel";
-import { BackButton } from "../../Components/BackButton/BackButton";
+// import { BackButton } from "../../Components/BackButton/BackButton";
 
 export default function CareerDetails() {
     const [form, setForm] = useState({});
@@ -44,8 +44,7 @@ export default function CareerDetails() {
 
     return (
         <div className="auth-container">
-            <div className="auth-card">
-                <BackButton />
+            <div className="auth-card welcome">
                 {showWarning && <span className="back-btn" style={{ color: "red" }}>Please fill all the details</span>}
 
                 <h2>Education & Career</h2>

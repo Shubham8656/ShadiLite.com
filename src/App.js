@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
 import Login from "./pages/login/login";
 import Register from "./pages/Register/Register";
 import ProfileSetup from "./pages/Profile/Profile";
@@ -18,6 +17,8 @@ import PersonalDetails from "./pages/PersonalDetails/PersonalDetails";
 import CareerDetails from "./pages/CareerDetails/CareerDetails";
 import FamilyDetails from "./pages/FamilyDetails/FamilyDetails";
 import AboutMe from "./pages/AboutMe/AboutMe";
+import SignInOrSignUp from "./pages/SignInOrSignUp/SignInOrSignUp";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login-register" element={<SignInOrSignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile-setup" element={<ProfileSetup />} />

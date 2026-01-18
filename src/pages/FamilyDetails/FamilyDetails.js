@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CustomDropdown from "../../Components/CustomDropdown/CustomDropdown";
 import "../Auth.css";
 import { FieldLabel } from "../../Components/FieldLabel/FieldLabel";
-import { BackButton } from "../../Components/BackButton/BackButton";
+// import { BackButton } from "../../Components/BackButton/BackButton";
 
 export default function FamilyDetails() {
     const [form, setForm] = useState({});
@@ -36,8 +36,7 @@ export default function FamilyDetails() {
     return (
         <div className="auth-container">
             
-            <div className="auth-card">
-                <BackButton />
+            <div className="auth-card welcome">
                 <h2>Family Details</h2>
                 <div className="spacer-10" />
                 <FieldLabel label="Family Type" />

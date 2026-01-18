@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../Auth.css";
 import CustomDropdown from "../../Components/CustomDropdown/CustomDropdown";
 import { FieldLabel } from "../../Components/FieldLabel/FieldLabel";
-import { BackButton } from "../../Components/BackButton/BackButton";
+// import { BackButton } from "../../Components/BackButton/BackButton";
 
 export default function PersonalDetails() {
     const [form, setForm] = useState({});
@@ -56,9 +56,8 @@ export default function PersonalDetails() {
     const h = (k, v) => setForm(p => ({ ...p, [k]: v }));
 
     return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <BackButton />
+        <div className="auth-container ">
+            <div className="auth-card welcome">
                 {showWarning && <span className="back-btn" style={{ color: "red" }}>Please fill all the details</span>}
                 <h2>Personal Details</h2>
                 <div className="spacer-10" />

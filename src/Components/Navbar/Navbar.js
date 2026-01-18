@@ -21,7 +21,7 @@ export default function Navbar() {
     const logout = async () => {
         await signOut(auth);
         localStorage.clear();
-        goTo("/");
+        goTo("/login-register");
     };
 
     useEffect(() => {
@@ -65,7 +65,7 @@ export default function Navbar() {
                 <span onClick={
                     () => goTo("/chats")}>Chats</span>
 
-                <span onClick={() => goTo("/profile-completion")}>My Profile</span>
+                <span onClick={() => goTo("/my-profile")}>My Profile</span>
                 <span onClick={logout}>Logout</span>
             </div>
         </div>

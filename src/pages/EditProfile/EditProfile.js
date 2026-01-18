@@ -4,7 +4,7 @@ import { auth, db } from "../../firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import "../Auth.css";
 import { FieldLabel } from "../../Components/FieldLabel/FieldLabel";
-import { BackButton } from "../../Components/BackButton/BackButton";
+// import { BackButton } from "../../Components/BackButton/BackButton";
 
 export default function EditProfile() {
   const [name, setName] = useState("");
@@ -71,7 +71,6 @@ export default function EditProfile() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <BackButton />
         {showWarning && <span className="back-btn" style={{ color: "red" }}>Please fill all the details</span>}
         <h2>Basic Details</h2>
         <div className="spacer-10" />

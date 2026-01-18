@@ -1,0 +1,28 @@
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  /* margin-left: 0px; */
+  font-size: 13px;
+  color: #999;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-align: right;
+  flex: 1;
+  /* margin-left: 12px; */
+}

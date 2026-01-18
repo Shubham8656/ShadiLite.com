@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-
-import "../Auth.css";
+import { calculateProfileCompletion } from "../../utils/matchingEngine";
+import "./MyProfile.css";
+import { FieldDetail } from "../../Components/FieldDetail/FieldDetail";
 
 export default function MyProfile() {
   const [profile, setProfile] = useState(null);
+  const [profileCompletion, setProfileCompletion] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,61 +18,162 @@ export default function MyProfile() {
 
       const snap = await getDoc(doc(db, "users", user.uid));
       if (snap.exists()) {
-        setProfile(snap.data());
+        const userData = snap.data();
+        setProfile(userData);
+        setProfileCompletion(calculateProfileCompletion(userData));
       }
-      console.log(snap.data());
     };
 
     fetchProfile();
   }, []);
 
   if (!profile) {
-    return <p style={{ padding: 40 }}>Loading profile...</p>;
+    return <div className="my-profile-loading">Loading profile...</div>;
   }
 
+  const getInitials = (name) => {
+    return name
+      ?.split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase() || "U";
+  };
+
   return (
-    <div className="profile-details-page">
-      <div className="profile-details-card">
-        <h2 style={{ justifySelf: "center" }}>My Profile</h2>
-        <div className="spacer-10" />
-        {profile.photoURL && (
-          <img
-            src={profile.photoURL}
-            alt="me"
-            style={{ width: 100, height: 100, borderRadius: "50%", marginBottom: 10 }}
-          />
+    <div className="my-profile-container">
+      {/* Profile Header */}
+      <div className="profile-header">
+        <div className="profile-header-bg"></div>
+        <div className="profile-avatar-section">
+          {profile.photoURL ? (
+            <img
+              src={profile.photoURL}
+              alt="profile"
+              className="profile-avatar-image"
+            />
+          ) : (
+            <div className="profile-avatar-placeholder">
+              {getInitials(profile.name)}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Main Profile Content */}
+      <div className="profile-main-content">
+        {/* Name and Quick Info */}
+        <div className="profile-name-section">
+          <h1 className="profile-name">{profile.name}</h1>
+          <p className="profile-tagline">
+            {profile.age && profile.location && `${profile.age}, ${profile.location}`}
+          </p>
+        </div>
+
+        {/* Completion Progress Bar */}
+        {profileCompletion && (
+          <div className="profile-completion">
+            <div className="completion-header">
+              <span>Profile Strength</span>
+              <span className="completion-percentage">{profileCompletion}%</span>
+            </div>
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{ width: `${profileCompletion.percentage}%` }}
+              ></div>
+            </div>
+          </div>
         )}
-        <h3 style={{ color: "pink" }}>Basic Details</h3>
-        <p><strong>Name:</strong> {profile.name}</p>
-        <p><strong>Age:</strong> {profile.age}</p>
-        <p><strong>Gender:</strong> {profile.gender}</p>
-        <p><strong>Religion:</strong> {profile.religion}</p>
-        <p><strong>Location:</strong> {profile.location}</p>
 
-        <h3 style={{ color: "pink" }}>Personal Details</h3>
-        <p><strong>Height:</strong> {profile.height}cm</p>
-        <p><strong>Marital Status:</strong> {profile.maritalStatus}</p>
-        <p><strong>Mother Tounge:</strong> {profile.motherTongue}</p>
-        <p><strong>Diet:</strong> {profile.diet}</p>
+        {/* Profile Sections */}
+        <div className="profile-sections">
+          {/* Basic Details */}
+          {(profile.name || profile.age || profile.gender || profile.religion) && (
+            <div className="profile-section">
+              <div className="space-between" >
+                <h3 className="section-title">Basic Details</h3>
+                <span className="section-title" onClick={() => navigate("/edit-profile")}>✏️</span>
+              </div>
+              <div className="section-content">
 
-        <h3 style={{ color: "pink" }}>Education Details</h3>
-        <p><strong>Education:</strong> {profile.education}</p>
-        <p><strong>Profession:</strong> {profile.profession}</p>
-        <p><strong>Income:</strong> {profile.income}</p>
+                <FieldDetail label={"Age"} value={profile.age} />
+                <FieldDetail label={"Gender"} value={profile.gender} />
+                <FieldDetail label={"Religion"} value={profile.religion} />
+                <FieldDetail label={"Location"} value={profile.location} />
+              </div>
+            </div>
+          )}
 
-        <h3 style={{ color: "pink" }}>Family Details</h3>
-        <p><strong>Family Type:</strong> {profile.familyType}</p>
-        <p><strong>Father Occupation:</strong> {profile.fatherOccupation}</p>
-        <p><strong>Mother Occupation:</strong> {profile.motherOccupation}</p>
-        <p><strong>Siblings:</strong> {profile.siblings}</p>
+          {/* Personal Details */}
+          {(profile.height || profile.maritalStatus || profile.motherTongue || profile.diet) && (
+            <div className="profile-section">
+              <div className="space-between" >
+                <h3 className="section-title">Personal Details</h3>
+                <span className="section-title" onClick={() => navigate("/personal-details")}>✏️</span>
+              </div>
+              <div className="section-content">
+                <FieldDetail label={"Height (cm)"} value={profile.height} />
+                <FieldDetail label={"Marital Status"} value={profile.maritalStatus} />
+                <FieldDetail label={"Mother Tongue"} value={profile.motherTongue} />
+                <FieldDetail label={"Diet"} value={profile.diet} />
+              </div>
+            </div>
+          )}
 
-        <button
-          className="secondary-btn"
-          onClick={() => navigate("/profile-completion")}
-        >
-          Edit Profile
-        </button>
+          {/* Career Details */}
+          {(profile.education || profile.profession || profile.income) && (
+            <div className="profile-section">
+              <div className="space-between" >
+                <h3 className="section-title">Career Details</h3>
+                <span className="section-title" onClick={() => navigate("/career-details")}>✏️</span>
+              </div>
+              <div className="section-content">
+                <FieldDetail label={"Education"} value={profile.education} />
+                <FieldDetail label={"Profession"} value={profile.profession} />
+                <FieldDetail label={"Income"} value={profile.income} />
+              </div>
+            </div>
+          )}
 
+          {/* Family Details */}
+          {(profile.familyType || profile.fatherOccupation || profile.motherOccupation || profile.siblings) && (
+            <div className="profile-section">
+              <div className="space-between" >
+                <h3 className="section-title">Family Details</h3>
+                <span className="section-title" onClick={() => navigate("/family-details")}>✏️</span>
+              </div>
+              <div className="section-content">
+                <FieldDetail label={"Familty Type"} value={profile.familyType} />
+                <FieldDetail label={"Father's Occupation"} value={profile.fatherOccupation} />
+                <FieldDetail label={"Mother's Occupation"} value={profile.motherOccupation} />
+                <FieldDetail label={"Siblings"} value={profile.siblings} />
+              </div>
+            </div>
+          )}
+
+          {/* About Me */}
+          {profile.aboutMe && (
+            <div className="profile-section">
+              <div className="space-between" >
+                <h3 className="section-title">About Me</h3>
+                <span className="section-title" onClick={() => navigate("/about-me")}>✏️</span>
+              </div>
+              <div className="section-content">
+                <div className="about-text">{profile.aboutMe}</div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="profile-actions">
+          <button
+            className="edit-profile-btn"
+            onClick={() => navigate("/profile-completion")}
+          >
+            Edit Profile
+          </button>
+        </div>
       </div>
     </div>
   );

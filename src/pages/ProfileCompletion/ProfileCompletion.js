@@ -24,23 +24,23 @@ export default function ProfileCompletion() {
         <div className="matches-page">
             <h2>Complete Your Profile</h2>
             <div className="spacer-10" />
-            <div className="profile-card" onClick={() => navigate("/edit-profile")}>
+            <div className="profile-card welcome" onClick={() => navigate("/edit-profile")}>
                 Basic Details {profile.name && profile.age && profile.gender && profile.religion && profile.location ? "✅" : "❌"}
             </div>
             <div className="spacer-10" />
-            <div className="profile-card" onClick={() => navigate("/personal-details")}>
+            <div className="profile-card welcome" onClick={() => navigate("/personal-details")}>
                 Personal Details {profile.height && profile.maritalStatus && profile.motherTongue && profile.diet ? "✅" : "❌"}
             </div>
             <div className="spacer-10" />
-            <div className="profile-card" onClick={() => navigate("/career-details")}>
+            <div className="profile-card welcome" onClick={() => navigate("/career-details")}>
                 Education & Career {profile.education && profile.profession && profile.income ? "✅" : "❌"}
             </div>
             <div className="spacer-10" />
-            <div className="profile-card" onClick={() => navigate("/family-details")}>
+            <div className="profile-card welcome" onClick={() => navigate("/family-details")}>
                 Family Details {profile.familyType && profile.fatherOccupation && profile.motherOccupation && profile.siblings ? "✅" : "❌"}
             </div>
             <div className="spacer-10" />
-            <div className="profile-card" onClick={() => navigate("/about-me")}>
+            <div className="profile-card welcome" onClick={() => navigate("/about-me")}>
                 About Me {profile.aboutMe ? "✅" : "❌"}
             </div>
         </div>

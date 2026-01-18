@@ -29,7 +29,7 @@ export default function ProfileCard({ profile }) {
       <p>{profile.location}</p>
 
       <button
-        className="secondary-btn"
+        className="secondary-btn welcome"
         onClick={() => navigate(`/profile/${profile.id}`)}
       >
         View Profile
