@@ -90,6 +90,10 @@ export default function Home() {
                 <h3>Quick Actions</h3>
 
                 <div className="quick-actions">
+                    <button onClick={() => navigate("/my-preference")}>
+                        🎯 My Preference
+                    </button>
+
                     <button onClick={() => navigate("/matches")}>
                         🔍 Find Matches
                     </button>

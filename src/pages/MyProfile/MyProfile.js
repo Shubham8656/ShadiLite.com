@@ -35,7 +35,7 @@ export default function MyProfile() {
   if (loading) {
     return <div className="my-profile-loading">Loading...</div>;
   }
-  if (!profile) {
+  if (!profile && !loading) {
     return <div className="my-profile-loading">No Profile created yet. Please create your profile...</div>;
   }
 

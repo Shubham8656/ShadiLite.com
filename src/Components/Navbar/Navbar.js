@@ -37,8 +37,13 @@ export default function Navbar() {
 
     return (
         <div className="navbar">
-            <div className="logo" onClick={() => goTo("/")}>
-                ShaadiLite
+            <div className="logo-section">
+                <button className="home-icon-btn" onClick={() => goTo("/")} title="Go to Home">
+                    🏠
+                </button>
+                <div className="logo" onClick={() => goTo("/")}>
+                    ShaadiLite
+                </div>
             </div>
 
             <div className="burger" onClick={() => setOpen(!open)}>

@@ -19,6 +19,7 @@ import FamilyDetails from "./pages/FamilyDetails/FamilyDetails";
 import AboutMe from "./pages/AboutMe/AboutMe";
 import SignInOrSignUp from "./pages/SignInOrSignUp/SignInOrSignUp";
 import Home from "./pages/Home/Home";
+import MyPreference from "./pages/MyPreference/MyPreference";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/career-details" element={<ProtectedRoute><CareerDetails /></ProtectedRoute>} />
         <Route path="/family-details" element={<ProtectedRoute><FamilyDetails /></ProtectedRoute>} />
         <Route path="/about-me" element={<ProtectedRoute><AboutMe /></ProtectedRoute>} />
+        <Route path="/my-preference" element={<ProtectedRoute><MyPreference /></ProtectedRoute>} />
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       </Routes>
 
